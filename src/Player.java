@@ -47,9 +47,7 @@ public abstract class Player implements Comparable<Player> {
      * have an emergency meeting.
      */
     //YOUR CODE HERE
-    public void emergencyMeeting(){
-
-    }
+    abstract void emergencyMeeting();
 
     /**
      * This method is the compareTo method from the Comparable interface.
@@ -65,10 +63,10 @@ public abstract class Player implements Comparable<Player> {
         }
         if(p.getSusLevel() < susLevel){
             return 1;
-        } else {
-            return 0;
         }
+        return 0;
     }
+
 
     /**
      * This is the equals method which tells you if two Players are equal
