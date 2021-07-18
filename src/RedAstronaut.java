@@ -1,9 +1,9 @@
 import java.util.Arrays;
+import java.util.Locale;
 
 public class RedAstronaut extends Player implements Impostor{
     //Instance Variable
     private String skill; //either inexperienced, experienced, or expert.
-    private Object RedAstronaut;
 
     //Constructor
     public RedAstronaut(String name) {
@@ -15,8 +15,11 @@ public class RedAstronaut extends Player implements Impostor{
         this.skill = skill;
     }
 
-}
 
+// ***** RedAstronaut Getters *****
+    public String getSkill(){
+        return this.skill;
+    }
 // ***** RedAstronaut Methods *****
     // Interface Methods
     public void freeze(Player p) {
@@ -34,8 +37,32 @@ public class RedAstronaut extends Player implements Impostor{
     }
 
     public void sabotage(Player p){
-        return;
+        //Can't freeze another impostor, can't freeze an already frozen player, and can't call .freeze if they are already frozen.
+        if (p instanceof RedAstronaut || p.isFrozen() || this.isFrozen()) {
+            return;
+        }
+        //TODO: check if need to round up or down
+        if(this.getSusLevel() < 20){
+            p.setSusLevel((int)(p.getSusLevel() * 1.5));
+        } else {
+            p.setSusLevel((int)(p.getSusLevel() * 1.25));
+        }
     }
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof RedAstronaut){
+            if(((RedAstronaut) o).getName() == this.getName() && ((RedAstronaut) o).isFrozen() == this.isFrozen() && ((RedAstronaut) o).getSusLevel() == this.getSusLevel() && ((RedAstronaut) o).getSkill() == this.getSkill()){
+                return true;
+            }
+        }
+        return false;
+    }
+    public String toString(){
+        String myString = super.toString();
+        myString += "I am an " + this.getSkill() + " player!";
+        return  getSusLevel() > 20 ? myString : myString.toUpperCase(Locale.ROOT);
+    }
+
 
     // Super Class Methods
     public void emergencyMeeting() {
@@ -67,14 +94,9 @@ public class RedAstronaut extends Player implements Impostor{
         gameOver();
     }
 
-
-
-
-
-    }
-
-
 }
+
+
 
 
 
