@@ -3,9 +3,9 @@ public interface Impostor {
 
     // ***** Impostor Methods *****
     //Any class that implements Impostor must provide a method definition for these methods
-    void freeze(Player, p);
+    void freeze(Player p);
 
-    void sabotage(Player, p);
+    void sabotage(Player p);
 
 
 }

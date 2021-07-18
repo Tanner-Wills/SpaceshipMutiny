@@ -1,26 +1,39 @@
 import java.util.Arrays;
 
-public class RedAstronaut extends Player implements Impostor {
+public class RedAstronaut extends Player implements Impostor{
     //Instance Variable
     private String skill; //either inexperienced, experienced, or expert.
+    private Object RedAstronaut;
 
     //Constructor
-    public RedAstronaut(String name){
+    public RedAstronaut(String name) {
         this(name, 15, "experienced");
     }
 
-    public RedAstronaut(String name, int susLevel, String skill){
+    public RedAstronaut(String name, int susLevel, String skill) {
         super(name, susLevel);
         this.skill = skill;
     }
 
+}
 
 // ***** RedAstronaut Methods *****
     // Interface Methods
-    public void freeze(Player, p){
-        return;
+    public void freeze(Player p) {
+        //Can't freeze another impostor, can't freeze an already frozen player, and can't call .freeze if they are already frozen.
+        if (p instanceof RedAstronaut || p.isFrozen() || this.isFrozen()) {
+            return;
+        }
+        //Can only freeze if their susLevel is less than the chosen player's susLevel
+        if (this.getSusLevel() < p.getSusLevel()) {
+            p.setFrozen(true);
+            gameOver();
+        } else {
+            this.setSusLevel(this.getSusLevel() * 2);
+        }
     }
-    public void sabotage(Player, p){
+
+    public void sabotage(Player p){
         return;
     }
 
@@ -51,6 +64,7 @@ public class RedAstronaut extends Player implements Impostor {
                 suspects[0].setFrozen(true);
             }
         }
+        gameOver();
     }
 
 
