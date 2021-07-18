@@ -20,6 +20,7 @@ public class RedAstronaut extends Player implements Impostor{
     public String getSkill(){
         return this.skill;
     }
+
 // ***** RedAstronaut Methods *****
     // Interface Methods
     public void freeze(Player p) {
@@ -48,6 +49,7 @@ public class RedAstronaut extends Player implements Impostor{
             p.setSusLevel((int)(p.getSusLevel() * 1.25));
         }
     }
+
     @Override
     public boolean equals(Object o){
         if(o instanceof RedAstronaut){
@@ -57,12 +59,13 @@ public class RedAstronaut extends Player implements Impostor{
         }
         return false;
     }
+
+    @Override
     public String toString(){
         String myString = super.toString();
         myString += "I am an " + this.getSkill() + " player!";
         return  getSusLevel() > 20 ? myString : myString.toUpperCase(Locale.ROOT);
     }
-
 
     // Super Class Methods
     public void emergencyMeeting() {
