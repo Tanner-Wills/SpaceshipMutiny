@@ -89,7 +89,7 @@ public class BlueAstronaut extends Player implements Crewmate{
     @Override
     public String toString(){
         String myString = super.toString();
-        myString += "I have " + this.numTasks + " left over.";
+        myString += "I have " + this.numTasks + " tasks left over.";
         return  getSusLevel() > 15 ? myString : myString.toUpperCase(Locale.ROOT);
     }
 

@@ -63,7 +63,7 @@ public class RedAstronaut extends Player implements Impostor{
     @Override
     public String toString(){
         String myString = super.toString();
-        myString += "I am an " + this.getSkill() + " player!";
+        myString += " I am an " + this.getSkill() + " player!";
         return  getSusLevel() > 20 ? myString : myString.toUpperCase(Locale.ROOT);
     }
 
